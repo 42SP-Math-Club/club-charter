@@ -15,38 +15,36 @@ LATEX_PACKAGES = \
 LATEX_PACKAGE_FILES = $(addsuffix .sty,$(LATEX_PACKAGES))
 
 ifeq ($(OS),Windows_NT)
-    OPEN_CMD = cmd /c start ""
-    OS_NAME  = Windows
+    OPEN_CMD   = start ""
+    RM_DIR_CMD = rmdir /s /q
+    MKDIR_CMD  = if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+    OS_NAME    = Windows
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        OPEN_CMD = xdg-open
-        OS_NAME  = Linux
+        OPEN_CMD   = xdg-open
+        RM_DIR_CMD = rm -rf
+        MKDIR_CMD  = mkdir -p $(BUILD_DIR)
+        OS_NAME    = Linux
     else ifeq ($(UNAME_S),Darwin)
-        OPEN_CMD = open
-        OS_NAME  = macOS
+        OPEN_CMD   = open
+        RM_DIR_CMD = rm -rf
+        MKDIR_CMD  = mkdir -p $(BUILD_DIR)
+        OS_NAME    = macOS
     else
-        OPEN_CMD = echo "Cannot open PDF — unrecognised OS. File is at"
-        OS_NAME  = Unknown
+        OPEN_CMD   = echo "Não é possível abrir o PDF — SO não reconhecido. Arquivo em"
+        RM_DIR_CMD = rm -rf
+        MKDIR_CMD  = mkdir -p $(BUILD_DIR)
+        OS_NAME    = Unknown
     endif
 endif
 
 all: pdf
 
 check-deps:
-	@echo "Checking LaTeX dependencies..."
-	@command -v latexmk >/dev/null 2>&1 \
-	    || { echo "ERROR: latexmk not found. Install TeX Live or MiKTeX first."; exit 1; }
-	@command -v kpsewhich >/dev/null 2>&1 \
-	    || { echo "ERROR: kpsewhich not found. TeX tools are incomplete."; exit 1; }
-	@if command -v tlmgr >/dev/null 2>&1; then \
-	    echo "  ✓ TeX Live detected"; \
-	elif command -v miktex >/dev/null 2>&1 || command -v mpm >/dev/null 2>&1; then \
-	    echo "  ✓ MiKTeX detected"; \
-	else \
-	    echo "ERROR: Neither tlmgr (TeX Live) nor MiKTeX CLI found."; \
-	    exit 1; \
-	fi
+	@echo "Verificando dependências do LaTeX..."
+	@command -v $(LATEX) >/dev/null 2>&1 || { echo "ERRO: $(LATEX) não encontrado. Instale TeX Live, MiKTeX ou MacTeX primeiro."; exit 1; }
+	@command -v kpsewhich >/dev/null 2>&1 || { echo "ERRO: kpsewhich não encontrado. A instalação do TeX está incompleta."; exit 1; }
 	@missing=""; \
 	for pkg in $(LATEX_PACKAGE_FILES); do \
 	    if ! kpsewhich "$$pkg" >/dev/null 2>&1; then \
@@ -54,62 +52,55 @@ check-deps:
 	    fi; \
 	done; \
 	if [ -n "$$missing" ]; then \
-	    echo "ERROR: Missing packages:$$missing"; \
-	    echo "Run 'make install-deps' to install them."; \
+	    echo "ERRO: Pacotes ausentes:$$missing"; \
+	    echo "Execute 'make install-deps' ou instale-os via gerenciador do seu sistema (apt, dnf, etc)."; \
 	    exit 1; \
 	fi
-	@echo "  ✓ All LaTeX dependencies OK"
+	@echo "  ✓ Todas as dependências do LaTeX estão OK!"
 
 install-deps:
-	@echo "Installing LaTeX packages..."
+	@echo "Tentando instalar pacotes LaTeX ausentes..."
 	@if command -v tlmgr >/dev/null 2>&1; then \
-	    echo "  TeX Live — installing with tlmgr..."; \
-	    tlmgr install $(LATEX_PACKAGES) \
-	        || echo "  (Some packages may already be installed — that is fine)"; \
+	    echo "  TeX Live detectado. Executando tlmgr..."; \
+	    tlmgr install $(LATEX_PACKAGES) || { \
+	        echo ""; \
+	        echo "  ATENÇÃO: Se o tlmgr falhou no Linux, o gerenciador de pacotes da sua distro pode estar bloqueando-o."; \
+	        echo "  Neste caso, instale os pacotes pelo sistema. Exemplo no Ubuntu/Debian:"; \
+	        echo "  sudo apt install texlive-latex-extra texlive-science texlive-fonts-recommended"; \
+	    }; \
 	elif command -v miktex >/dev/null 2>&1; then \
-	    echo "  MiKTeX — installing with miktex CLI..."; \
+	    echo "  MiKTeX detectado. Instalando via miktex CLI..."; \
 	    for pkg in $(LATEX_PACKAGES); do \
-	        miktex packages install "$$pkg" \
-	            || echo "  Package $$pkg: already installed or skipped"; \
-	    done; \
-	elif command -v mpm >/dev/null 2>&1; then \
-	    echo "  MiKTeX (legacy mpm) — installing..."; \
-	    for pkg in $(LATEX_PACKAGES); do \
-	        mpm --install "$$pkg" \
-	            || echo "  Package $$pkg: already installed or skipped"; \
+	        miktex packages install "$$pkg" || echo "  Pacote $$pkg: já instalado ou ignorado"; \
 	    done; \
 	else \
-	    echo "ERROR: No supported TeX package manager found."; \
-	    echo ""; \
-	    echo "Install a TeX distribution and re-run 'make install-deps':"; \
-	    echo "  Windows : MiKTeX  https://miktex.org/download"; \
-	    echo "            TeX Live https://tug.org/texlive/windows.html"; \
-	    echo "  Linux   : sudo apt-get install texlive-full"; \
-	    echo "  macOS   : brew install --cask mactex  (or mactex-no-gui)"; \
+	    echo "ERRO: Nenhum gerenciador de pacotes TeX suportado (tlmgr ou miktex) encontrado."; \
+	    echo "Recomendamos instalar uma distribuição TeX completa:"; \
+	    echo "  Windows : MiKTeX (https://miktex.org) ou TeX Live"; \
+	    echo "  Linux   : sudo apt install texlive-full (Ubuntu/Debian)"; \
+	    echo "  macOS   : brew install --cask mactex"; \
 	    exit 1; \
 	fi
-	@echo "  ✓ LaTeX packages ready!"
+	@echo "  ✓ Processo de instalação finalizado!"
 
 $(BUILD_DIR)/$(MAIN).pdf: $(MAIN).tex
-	@mkdir -p $(BUILD_DIR)
+	@$(MKDIR_CMD)
 	$(LATEX) $(LATEX_FLAGS) -output-directory=$(BUILD_DIR) $(MAIN).tex
 
 pdf: check-deps $(BUILD_DIR)/$(MAIN).pdf
 
 view: pdf
-	@echo "Opening $(BUILD_DIR)/$(MAIN).pdf on $(OS_NAME)..."
-	$(OPEN_CMD) $(BUILD_DIR)/$(MAIN).pdf
+	@echo "Abrindo $(BUILD_DIR)/$(MAIN).pdf no $(OS_NAME)..."
+	@$(OPEN_CMD) $(BUILD_DIR)/$(MAIN).pdf
 
 clean:
-	@[ -d $(BUILD_DIR) ] \
-	    && $(LATEX) -c -output-directory=$(BUILD_DIR) $(MAIN).tex \
-	    || echo "Nothing to clean."
+	@echo "Limpando arquivos auxiliares..."
+	@$(LATEX) -c -output-directory=$(BUILD_DIR) $(MAIN).tex >/dev/null 2>&1 || true
 
-distclean:
-	@[ -d $(BUILD_DIR) ] \
-	    && $(LATEX) -C -output-directory=$(BUILD_DIR) $(MAIN).tex \
-	    || echo "Nothing to remove."
-	@rm -rf $(BUILD_DIR)
+distclean: clean
+	@echo "Removendo o diretório de build e PDF gerado..."
+	@$(LATEX) -C -output-directory=$(BUILD_DIR) $(MAIN).tex >/dev/null 2>&1 || true
+	@$(RM_DIR_CMD) $(BUILD_DIR) >/dev/null 2>&1 || true
 
 rebuild: distclean pdf
 
@@ -119,7 +110,7 @@ help:
 	@echo "  Sistema operacional detectado : $(OS_NAME)"
 	@echo ""
 	@echo "Targets:"
-	@echo "  make install-deps   Instala pacotes LaTeX necessários"
+	@echo "  make install-deps   Tenta instalar pacotes LaTeX necessários"
 	@echo "  make check-deps     Verifica se as dependências estão instaladas"
 	@echo "  make  (ou make pdf) Compila para PDF (padrão; verifica deps)"
 	@echo "  make view           Compila e abre o PDF"
