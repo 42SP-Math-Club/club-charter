@@ -1,0 +1,62 @@
+# Pasta de compilação (manter apenas o PDF)
+build/*
+!build/*.pdf
+
+# Arquivos compilados LaTeX
+*.pdf
+*.dvi
+*.ps
+*.eps
+
+# Arquivos temporários de compilação
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.fmt
+*.glo
+*.gls
+*.glsdefs
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.toc
+*.xdv
+
+# Pacotes e dependências
+*.sty
+*.cls
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Sistemas Operacionais
+Thumbs.db
+.DS_Store
+
+# Arquivos de backup
+*.bak
+*.backup
+*~
+
+# Artefatos de build
+build/
+dist/
