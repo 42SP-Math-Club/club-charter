@@ -53,7 +53,14 @@ latexmk -pdf math-club-charter.tex
 - Uma distribuição LaTeX (TeX Live, MiKTeX, MacTeX, etc.)
 - `latexmk` (geralmente vem com distribuições LaTeX)
 - `make` (ou `mingw-make` no Windows)
-- Pacotes LaTeX: `geometry`, `xcolor`, `titlesec`, `hyperref`, `mdframed`, `tcolorbox`, `amsmath`, `amssymb`
+- Pacotes LaTeX: `inputenc`, `pmboxdraw`, `lmodern`, `fontenc`, `geometry`, `xcolor`, `titlesec`, `titletoc`, `fancyhdr`, `enumitem`, `hyperref`, `mdframed`, `array`, `booktabs`, `microtype`, `parskip`, `amsmath`, `amssymb`, `tcolorbox`, `fancyvrb`
+
+Para instalar e validar dependências com o Makefile:
+
+```bash
+make install-deps
+make check-deps
+```
 
 ## 📝 Estrutura do Projeto
 

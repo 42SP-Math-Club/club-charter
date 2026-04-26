@@ -1,6 +1,5 @@
 # Pasta de compilação (manter apenas o PDF)
-build/*
-!build/*.pdf
+build/
 
 # Arquivos compilados LaTeX
 *.dvi
