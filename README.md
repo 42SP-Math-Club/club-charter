@@ -1,4 +1,4 @@
-# Clube de Matemática @ 42 São Paulo
+# Clube de Matemática 42 São Paulo
 
 Regimento oficial do Clube de Matemática da 42 School unidade São Paulo.
 
