@@ -101,6 +101,11 @@ html: check-deps
 	else \
 		echo "ERRO: make4ht/htlatex não encontrados."; exit 1; \
 	fi
+	
+	iconv -f iso-8859-1 -t utf-8 docs/$(MAIN).html -o docs/$(MAIN).html.tmp
+	mv docs/$(MAIN).html.tmp docs/$(MAIN).html	
+	sed -i 's/charset=iso-8859-1/charset=utf-8/g' docs/$(MAIN).html
+	
 	@echo "  ✓ HTML gerado em docs/"	
 
 view: pdf
