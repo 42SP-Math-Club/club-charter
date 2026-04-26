@@ -91,24 +91,17 @@ $(BUILD_DIR)/$(MAIN).pdf: $(MAIN).tex
 pdf: check-deps $(BUILD_DIR)/$(MAIN).pdf
 
 html: check-deps
-	@$(MKDIR_CMD)
-	@mkdir -p $(HTML_DIR)
+	@mkdir -p docs
 	@if command -v make4ht >/dev/null 2>&1; then \
 		echo "Compilando HTML com make4ht..."; \
-		make4ht -B $(HTML_DIR) -d $(HTML_DIR) $(MAIN).tex; \
+		make4ht -d docs $(MAIN).tex; \
 	elif command -v htlatex >/dev/null 2>&1; then \
 		echo "Compilando HTML com htlatex..."; \
-		cd $(HTML_DIR) && htlatex ../../$(MAIN).tex; \
+		cd docs && htlatex ../$(MAIN).tex; \
 	else \
-		echo "ERRO: make4ht/htlatex não encontrados."; \
-		echo "Instale TeX4ht para habilitar compilação HTML."; \
-		exit 1; \
+		echo "ERRO: make4ht/htlatex não encontrados."; exit 1; \
 	fi
-	@echo "  ✓ HTML gerado em $(HTML_DIR)/"
-	cp build/html/index.html .
-	cp build/html/index.css . 2>/dev/null || true
-	cp build/html/*.svg . 2>/dev/null || true
-	make distclean
+	@echo "  ✓ HTML gerado em docs/"	
 
 view: pdf
 	@echo "Abrindo $(BUILD_DIR)/$(MAIN).pdf no $(OS_NAME)..."
