@@ -2,7 +2,7 @@
 
 MAIN = math-club-charter
 LATEX = latexmk
-LATEX_FLAGS = -pdf -interaction=nonstopmode -outdir=build
+LATEX_FLAGS = -pdf -interaction=nonstopmode
 
 BUILD_DIR = build
 
@@ -25,7 +25,7 @@ all: pdf
 
 pdf: $(MAIN).tex
 	@mkdir -p $(BUILD_DIR)
-	$(LATEX) $(LATEX_FLAGS) $(MAIN).tex
+	$(LATEX) $(LATEX_FLAGS) $(MAIN).tex -outdir=$(BUILD_DIR)
 
 clean:
 	$(LATEX) -c -outdir=$(BUILD_DIR) $(MAIN).tex

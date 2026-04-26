@@ -1,0 +1,606 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{pmboxdraw}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[activate=false]{microtype}
+\usepackage{parskip}
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable,listings}
+\usepackage{fancyvrb}
+
+\geometry{top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headheight=15pt}
+
+\definecolor{azul42}{HTML}{1F3A8A}
+\definecolor{azulclaro}{HTML}{E8EEF9}
+\definecolor{cinza}{HTML}{555555}
+\definecolor{cinzaclaro}{HTML}{F5F5F5}
+
+\hypersetup{colorlinks=true,linkcolor=azul42,urlcolor=azul42,
+  pdftitle={Regimento - Clube de Matematica 42 Sao Paulo}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{azul42}\small\textit{Clube de Matemática @ 42 São Paulo}}
+\fancyhead[R]{\color{cinza}\small\textit{Regimento v1.0.0}}
+\fancyfoot[C]{\color{cinza}\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{azul42}\hrule width\headwidth height\headrulewidth}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}
+  {\color{azul42}\Large\bfseries}{\thesection.}{0.6em}{}
+  [\vspace{2pt}{\color{azul42}\titlerule[1.5pt]}\vspace{4pt}]
+\titleformat{\subsection}{\color{azul42}\large\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\color{cinza}\normalsize\bfseries}{}{0em}{}
+\titlespacing{\section}{0pt}{18pt}{8pt}
+\titlespacing{\subsection}{0pt}{12pt}{6pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{4pt}
+
+\titlecontents{section}[1.5em]
+  {\vspace{4pt}\color{azul42}\bfseries}{\contentslabel{1.5em}}{}
+  {\titlerule*[6pt]{.}\contentspage}
+\titlecontents{subsection}[3.5em]
+  {\vspace{2pt}\small}{\contentslabel{2em}}{}
+  {\titlerule*[6pt]{.}\contentspage}
+
+\setlist[itemize]{leftmargin=1.5em,itemsep=3pt,parsep=0pt,topsep=4pt,
+  label={\color{azul42}\textbullet}}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=3pt,parsep=0pt,topsep=4pt,
+  label={\color{azul42}\arabic*.}}
+
+\newtcolorbox{infobox}[1][]{enhanced,breakable,
+  colback=azulclaro,colframe=azul42,boxrule=0.8pt,arc=4pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,#1}
+
+\newtcolorbox{codebox}{
+enhanced,breakable,
+  colback=cinzaclaro,colframe=cinza!40,boxrule=0.5pt,arc=3pt,
+  fontupper=\ttfamily\small,left=8pt,right=8pt,top=4pt,bottom=4pt}
+
+\newenvironment{filetree}{%
+  \VerbatimEnvironment
+  \begin{tcolorbox}[
+    enhanced, breakable,
+    colback=black!2, colframe=black!40,
+    boxrule=0.5pt, arc=3pt,
+    left=6pt, right=6pt, top=6pt, bottom=6pt]%
+  \begin{Verbatim}[fontsize=\small, baselinestretch=1.1]%
+}{%
+  \end{Verbatim}%
+  \end{tcolorbox}%
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+% CAPA
+\begin{center}
+  \vspace*{3cm}
+  {\fontsize{72}{72}\selectfont\color{azul42}$\Sigma$}\\[0.8cm]
+  {\fontsize{32}{36}\selectfont\color{azul42}\textbf{Clube de Matemática}}\\[0.3cm]
+  {\fontsize{20}{24}\selectfont\color{cinza}@ 42 São Paulo}\\[1.2cm]
+  {\color{azul42}\rule{0.6\textwidth}{1.5pt}}\\[0.8cm]
+  {\large\color{cinza}Regimento do Grupo de Estudos}\\[0.4cm]
+  {\normalsize\color{cinza}Versão 1.0.0 --- 2026}\\[1.5cm]
+  \begin{minipage}{0.75\textwidth}
+    \centering\itshape\color{cinza}\small
+    Este regimento apresenta os princípios, valores e diretrizes operacionais do
+    Clube de Matemática da 42 São Paulo. O clube tem como propósito criar um
+    ambiente de aprendizado colaborativo onde cadetes possam desenvolver
+    fundamentos matemáticos sólidos, fortalecer o raciocínio lógico e, acima
+    de tudo, sentir que pertencem a uma comunidade.
+  \end{minipage}
+\end{center}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+% 1. VALORES
+\section{Valores Fundamentais}
+
+Os valores do Clube de Matemática orientam nossas interações, decisões e a cultura do grupo.
+Eles refletem nosso compromisso com um ambiente de aprendizado inclusivo, seguro e eficaz,
+onde todo cadete pode crescer e contribuir.
+
+\subsection{Apoio Mútuo e Responsabilidade Compartilhada}
+
+Cada membro contribui para o esforço coletivo e reconhece seu papel como essencial para o
+sucesso do grupo. Isso inclui não apenas comprometimento individual, mas também a disposição
+de apoiar e encorajar colegas que estejam enfrentando dificuldades seja com um conceito
+matemático ou com a permanência na 42.
+
+\subsection{Comunicação Aberta e Construtiva}
+
+Criar um espaço seguro onde os cadetes possam tirar dúvidas sem julgamento é central para
+o clube. Ninguém deve sentir vergonha por não entender algo --- a matemática é uma jornada
+e toda pergunta é válida. O feedback entre membros deve ser honesto, respeitoso e voltado
+ao crescimento.
+
+\subsection{Respeito às Diferenças}
+
+Os cadetes da 42 vêm de formações muito diversas: alguns nunca viram Cálculo, outros têm
+graduação em exatas. Essa diversidade é uma força. O clube valoriza diferentes formas de
+pensar e aprender, criando um ambiente onde todos se sintam confortáveis para contribuir
+independentemente do seu ponto de partida.
+
+\subsection{Pertencimento e Presença}
+
+Um dos objetivos centrais do clube é fazer com que o cadete sinta que tem um lugar na
+42 --- pessoas que esperam por ele, um grupo ao qual pertence. Presença regular nas sessões
+não é apenas uma questão de aprendizado, mas de fortalecer os laços que mantêm a
+comunidade unida.
+
+\subsection{Curiosidade e Persistência}
+
+A matemática exige tempo e prática. O clube celebra o processo, não apenas o resultado.
+Errar faz parte do aprendizado e encarar desafios difíceis com persistência é mais valioso
+do que chegar rápido à resposta certa.
+
+\clearpage
+
+% 2. OBJETIVOS
+\section{Objetivos}
+
+Objetivos claros fornecem direção e propósito ao Clube de Matemática. Ao defini-los desde
+o início, o grupo estabelece um entendimento comum sobre o que pretende alcançar e como o
+sucesso será medido.
+
+\subsection{Objetivo Principal}
+
+\begin{infobox}
+  \textbf{Desenvolver uma base sólida de raciocínio matemático e lógico entre os cadetes
+  da 42 São Paulo, contribuindo diretamente para a permanência, o pertencimento e o
+  desempenho no curso.}
+\end{infobox}
+
+Para alcançar esse objetivo, o clube atuará sobre três pilares:
+
+\begin{enumerate}
+  \item Fortalecimento de fundamentos matemáticos essenciais para a programação;
+  \item Criação de um espaço de comunidade e apoio mútuo entre cadetes;
+  \item Redução da taxa de abandono causada por dificuldades lógico-matemáticas.
+\end{enumerate}
+
+\subsection{Objetivos Específicos}
+
+\subsubsection{Desenvolver Competências Matemáticas Essenciais}
+
+O clube focará no desenvolvimento progressivo de conhecimentos matemáticos práticos e
+aplicáveis ao contexto da 42. Por meio de sessões estruturadas, exercícios colaborativos e
+desafios progressivos, os membros construirão uma base sólida nas áreas definidas no
+Capítulo~5 deste regimento.
+
+O sucesso será medido por:
+
+\begin{itemize}
+  \item Realização de ao menos uma sessão por semana de forma contínua;
+  \item Participação ativa de ao menos 8 cadetes por sessão;
+  \item Relatos positivos de membros sobre impacto na confiança e na permanência.
+\end{itemize}
+
+\subsubsection{Reduzir Barreiras de Entrada no Cursus}
+
+Muitos cadetes abandonam a 42 nas primeiras semanas por dificuldades com lógica, raciocínio
+abstrato ou matemática básica. O clube oferecerá suporte específico nesses pontos críticos,
+criando uma rede de apoio para quem está travado e se sente sozinho.
+
+\subsubsection{Criar Senso de Comunidade}
+
+Além do conteúdo matemático, o clube funcionará como um ponto de encontro regular --- um
+grupo menor na comunidade maior da 42, onde o cadete tem rostos conhecidos, pessoas
+que torcem por ele e um motivo concreto para aparecer no campus.
+
+\subsection{Objetivos de Consolidação}
+
+\subsubsection{Produzir Proposta Pedagógica Formal}
+
+Após os primeiros ciclos de atividade, o clube documentará sua metodologia, resultados e
+impacto observado em um documento formal a ser apresentado à equipe pedagógica da 42 São
+Paulo. O objetivo é institucionalizar o grupo, demonstrando de forma concreta sua
+contribuição para a retenção e o desempenho dos cadetes no cursus.
+
+\subsection{Realismo e Adaptabilidade}
+
+Os objetivos deste regimento são ambiciosos, mas alcançáveis para um grupo motivado de
+cadetes. Com sessões regulares, participação ativa e liderança compartilhada, é realista
+construir uma comunidade matemática relevante dentro da 42 em 6 a 12 meses. Se necessário,
+o grupo revisará periodicamente suas metas e condições de funcionamento.
+
+\clearpage
+
+% 3. METODO
+\section{Método de Trabalho}
+
+O Clube de Matemática combina aprendizado estruturado com prática colaborativa. Para
+equilibrar teoria e aplicação, dois tipos complementares de sessões serão organizados:
+\textbf{sessões de estudo} e \textbf{sessões de resolução de problemas}. Além das reuniões
+regulares, o clube manterá um ambiente técnico compartilhado para comunicação, documentação
+e troca de conhecimento.
+
+\subsection{Sessões de Estudo}
+
+\begin{infobox}
+  \textbf{Frequência:} uma vez por semana \quad\textbf{Duração:} 2 horas
+\end{infobox}
+
+\subsubsection{Programa da Sessão}
+
+\begin{itemize}
+  \item \textbf{00:00 -- 00:10} | \textit{Abertura:} revisão do backlog e votação do que
+    será discutido na sessão.
+  \item \textbf{00:10 -- 01:40} | \textit{Exploração:} discussão e resolução colaborativa
+    dos temas escolhidos. Quem trouxe um problema ou referência naturalmente contribui mais
+    --- mas qualquer membro pode assumir a explicação.
+  \item \textbf{01:40 -- 01:55} | \textit{Registro:} soluções e descobertas relevantes são
+    documentadas no repositório.
+  \item \textbf{01:55 -- 02:00} | \textit{Próxima sessão:} definição do facilitador
+    rotativo para o próximo encontro.
+\end{itemize}
+
+\subsection{Facilitador Rotativo}
+
+Para garantir que as sessões comecem e fluam bem, um membro assume o papel de
+\textbf{facilitador} a cada semana. Esse papel é leve: garantir que a sessão comece no
+horário, conduzir a votação do backlog e manter o tempo. O facilitador \textbf{não precisa
+preparar conteúdo} --- o conteúdo vem do grupo.
+
+A rotação é definida no final de cada sessão. Se o facilitador designado não puder
+comparecer, qualquer outro membro assume voluntariamente.
+
+\subsection{Ferramentas e Ambiente}
+
+\begin{itemize}
+  \item Um canal de comunicação no Slack (ou plataforma equivalente da 42) para coordenação
+    e discussões;
+  \item Um repositório compartilhado (Vogsphere ou GitHub) para soluções, anotações e
+    materiais de referência.
+\end{itemize}
+
+\subsection{Registro de Soluções e Compartilhamento de Conhecimento}
+
+Documentar soluções de problemas e descobertas matemáticas é parte importante do processo
+de aprendizado. Os membros são incentivados a criar registros após resolver problemas
+desafiadores ou descobrir uma técnica nova.
+
+\clearpage
+
+% 4. COMPROMISSO
+\section{Compromisso}
+
+Ao ingressar no Clube de Matemática, cada membro afirma seu compromisso com o sucesso
+coletivo do grupo. Os membros se comprometem a:
+
+\begin{itemize}
+  \item Comparecer às sessões com regularidade;
+  \item Preparar as sessões que liderarem com responsabilidade;
+  \item Participar ativamente da resolução de problemas;
+  \item Contribuir com a base de conhecimento do grupo;
+  \item Apoiar colegas que estejam enfrentando dificuldades, dentro ou fora do contexto
+    matemático.
+\end{itemize}
+
+A prática individual é um componente essencial do desenvolvimento matemático. Os membros
+são incentivados a dedicar cerca de 1 a 3 horas por semana, fora das sessões agendadas:
+
+\begin{itemize}
+  \item Resolver problemas em plataformas como Khan Academy, Brilliant, CSES Problem Set
+    ou Art of Problem Solving;
+  \item Revisar soluções da sessão anterior;
+  \item Explorar aplicações matemáticas no contexto dos projetos da 42.
+\end{itemize}
+
+\clearpage
+
+% 5. AREAS
+\section{Áreas de Aprendizado}
+
+Este capítulo apresenta as áreas matemáticas centrais que guiarão as atividades do clube,
+selecionadas por sua relevância direta para o cursus da 42 e para o desenvolvimento do
+raciocínio lógico-matemático dos cadetes.
+
+\subsection{Área 1 --- Lógica e Raciocínio Matemático}
+
+A lógica formal é a espinha dorsal da programação e da matemática. Esta área cobre
+proposições, conectivos lógicos, tabelas-verdade, quantificadores, implicação, equivalência
+e demonstrações. Dominar lógica permite ao cadete entender o funcionamento interno dos
+programas e construir argumentos rigorosos.
+
+\subsection{Área 2 --- Matemática Discreta}
+
+A matemática discreta é o campo mais diretamente aplicável à ciência da computação. Inclui
+teoria ingênua dos conjuntos, relações, funções, combinatória, teoria dos grafos e indução
+matemática. Esses tópicos aparecem constantemente em algoritmos, estruturas de dados e
+análise de complexidade.
+
+\subsection{Área 3 --- Álgebra e Aritmética}
+
+Uma base sólida em álgebra é fundamental para qualquer área da matemática aplicada. Esta
+área cobre manipulação algébrica, teoria dos números, aritmética modular, divisibilidade,
+MDC, MMC e sistemas de equações.
+
+\subsection{Área 4 --- Probabilidade e Estatística}
+
+Probabilidade e estatística são cada vez mais relevantes na computação moderna,
+especialmente em algoritmos aleatorizados, análise de dados e inteligência artificial.
+Esta área abrange probabilidade básica, distribuições, esperança, variância e análise
+descritiva.
+
+\subsection{Área 5 --- Algoritmos e Complexidade}
+
+Esta área conecta a matemática diretamente à programação. Abrange análise de algoritmos,
+notação Big-$\mathcal{O}$, complexidade de tempo e espaço, recorrências e técnicas de
+design de algoritmos (divisão e conquista, programação dinâmica, algoritmos gulosos).
+
+\clearpage
+
+% 6. RECURSOS
+\section{Recursos Necessários}
+
+\subsection{Membros do Grupo}
+
+O grupo busca ter aproximadamente 8 a 15 membros ativos dispostos a:
+
+\begin{itemize}
+  \item Comparecer às sessões com regularidade;
+  \item Contribuir para o compartilhamento de conhecimento e documentação;
+  \item Participar de exercícios práticos;
+  \item Colaborar construtivamente com outros membros.
+\end{itemize}
+
+\subsection{Espaço e Ambiente}
+
+\begin{itemize}
+  \item Computadores ou quadros para demonstrações e resolução colaborativa;
+  \item Conexão estável à internet;
+  \item Capacidade de projeção ou compartilhamento de tela para explicações.
+\end{itemize}
+
+\subsection{Plataformas de Aprendizado}
+
+\begin{itemize}
+  \item \textbf{Khan Academy} --- fundamentos e exercícios progressivos;
+  \item \textbf{Brilliant.org} --- problemas interativos de matemática e lógica;
+  \item \textbf{Art of Problem Solving (AoPS)} --- problemas voltados ao nível de competição;
+  \item \textbf{CSES Problem Set} --- algoritmos com foco em programação;
+  \item \textbf{Project Euler} --- problemas matemáticos resolvidos com programação.
+\end{itemize}
+
+\clearpage
+
+\appendix
+% APENDICE A
+\section{Estrutura do Repositório de Conhecimento}
+
+\begin{filetree}
+knowledge-base/
+├── README.md
+├── guidelines/
+│   ├── template-solution
+│   └── rules-of-the-base
+├── solutions/
+│   ├── logic/
+│   ├── discrete-math/
+│   ├── algebra/
+│   ├── probability/
+│   └── algorithm/
+├── problems/
+│   ├── logic/
+│   ├── discrete-math/
+│   ├── algebra/
+│   ├── probability/
+│   └── algorithm/
+├── techniques/
+├── explanations/
+├── core-knowledge/
+└── resources/
+    ├── cheat-sheets/
+    └── study-materials/
+\end{filetree}
+
+\begin{description}
+  \item[\texttt{knowledge-base/}]
+    Raiz do repositório. Ponto de entrada para todo o conteúdo estruturado de aprendizado.
+
+  \item[\texttt{README.md}]
+    Visão geral do projeto, instruções de uso e guia de contribuição.
+
+  \item[\texttt{guidelines/}]
+    Padrões e regras que definem como o conteúdo deve ser escrito e organizado no
+    repositório.
+    \begin{itemize}
+      \item \texttt{template-solution} --- Modelo padrão para formatar cada entrada de
+        solução.
+      \item \texttt{rules-of-the-base} --- Convenções de nomenclatura, critérios de
+        qualidade e padrões editoriais.
+    \end{itemize}
+
+  \item[\texttt{solutions/}]
+    Soluções detalhadas passo a passo para os problemas, organizadas por área matemática
+    (\texttt{logic/}, \texttt{discrete-math/}, \texttt{algebra/}, \texttt{probability/},
+    \texttt{algorithm/}).
+
+  \item[\texttt{problems/}]
+    Problemas para prática, ainda sem solução ou propostos como desafio. Espelha exatamente
+    a estrutura de subpastas de \texttt{solutions/}.
+
+  \item[\texttt{techniques/}]
+    Estratégias reutilizáveis de resolução de problemas e métodos matemáticos (ex.:
+    indução, substituição, prova por contradição).
+
+  \item[\texttt{explanations/}]
+    Textos conceituais que explicam o \emph{porquê} de teoremas, demonstrações e ideias,
+    indo além do procedimento mecânico.
+
+  \item[\texttt{core-knowledge/}]
+    Definições fundamentais, axiomas e teoremas que servem de base para o restante
+    do repositório.
+
+  \item[\texttt{resources/}]
+    Materiais de apoio e documentos de referência rápida.
+    \begin{itemize}
+      \item \texttt{cheat-sheets/} --- Folhas de fórmulas e resumos de regras para
+        consulta rápida.
+      \item \texttt{study-materials/} --- Leituras complementares, links externos e textos
+        de referência curados.
+    \end{itemize}
+\end{description}
+
+\clearpage
+
+% APENDICE B
+\section{Template de Registro de Solução}
+
+\begin{infobox}[title=\textbf{Informações Básicas}]
+  \begin{itemize}[leftmargin=1.2em]
+    \item \textbf{Nome do Problema:} \hrulefill
+    \item \textbf{Plataforma / Fonte:} \hrulefill
+    \item \textbf{Área:} \hspace{0.3em}
+      $\square$ Lógica \hspace{0.3em}
+      $\square$ Mat.\ Discreta \hspace{0.3em}
+      $\square$ Álgebra \hspace{0.3em}
+      $\square$ Probabilidade \hspace{0.3em}
+      $\square$ Algoritmos \hspace{0.3em}
+      $\square$ Outro: \underline{\hspace{1.5cm}}
+    \item \textbf{Dificuldade:} \hspace{0.3em}
+      $\square$ Fácil \hspace{0.3em}
+      $\square$ Médio \hspace{0.3em}
+      $\square$ Difícil
+    \item \textbf{Data de Resolução:} \hrulefill
+    \item \textbf{Resolvido Por:} \hrulefill
+  \end{itemize}
+\end{infobox}
+
+\vspace{0.8em}
+\subsubsection*{Descrição do Problema}
+Qual é o objetivo? Que tipo de raciocínio é necessário? Que informações foram fornecidas?
+\vspace{3.5em}
+
+\subsubsection*{Análise Inicial}
+Que padrões você identificou? Que abordagens foram tentadas inicialmente?
+\vspace{3.5em}
+
+\subsubsection*{Solução}
+Explique o raciocínio matemático central, as técnicas utilizadas e, quando aplicável, o
+código desenvolvido.
+\vspace{3.5em}
+
+\subsubsection*{Conceitos e Técnicas Utilizadas}
+Liste os conceitos matemáticos, fórmulas ou técnicas utilizadas.
+\vspace{3em}
+
+\subsubsection*{Principais Aprendizados}
+Que padrão matemático foi identificado? Que erro atrasou a solução?
+\vspace{3em}
+
+\subsubsection*{Referências (Opcional)}
+Links para documentação, tutoriais ou recursos que ajudaram.
+
+\clearpage
+
+% APENDICE C
+\section{Áreas de Aprendizado e Subtópicos}
+
+\subsection*{Área 1 --- Lógica e Raciocínio Matemático}
+
+\subsubsection*{Proposições e Conectivos Lógicos}
+Proposições são afirmações que podem ser verdadeiras ou falsas. Os conectivos lógicos
+(negação $\neg$, conjunção $\wedge$, disjunção $\vee$, implicação $\Rightarrow$ e
+bicondicional $\Leftrightarrow$) permitem combinar proposições para formar argumentos
+complexos.
+
+\subsubsection*{Tabelas-Verdade e Equivalências}
+Tabelas-verdade analisam o comportamento de expressões lógicas em todos os casos possíveis.
+As Leis de De Morgan ($\neg(A \wedge B) \equiv \neg A \vee \neg B$) e outras equivalências
+permitem simplificar expressões.
+
+\subsubsection*{Quantificadores e Predicados}
+Quantificadores universais ($\forall$, ``para todo'') e existenciais ($\exists$, ``existe'')
+permitem expressar afirmações sobre conjuntos de objetos. A lógica de predicados forma a
+base da linguagem matemática formal.
+
+\subsubsection*{Técnicas de Demonstração}
+Técnicas como demonstração direta, por contra positiva, por contradição e por indução são
+ferramentas fundamentais do raciocínio matemático.
+
+\subsection*{Área 2 --- Matemática Discreta}
+
+\subsubsection*{Teoria Ingênua dos Conjuntos}
+Operações como união ($A \cup B$), interseção ($A \cap B$), diferença e produto cartesiano
+($A \times B$) aparecem constantemente em estruturas de dados e teoria de tipos.
+
+\subsubsection*{Combinatória}
+Permutações $P(n,k)$, combinações $\binom{n}{k}$ e o princípio da inclusão-exclusão
+aparecem em análise de complexidade de algoritmos e contagem de estruturas.
+
+\subsubsection*{Relações e Funções}
+Funções são relações com propriedades específicas essenciais para compreender mapeamentos
+em programação: injetividade (saídas distintas para entradas distintas), sobrejetividade
+(todo elemento do contradomínio é atingido) e bijetividade (ambas as propriedades).
+
+\subsubsection*{Teoria dos Grafos}
+Grafos $G = (V, E)$ modelam relações entre objetos. Conceitos como caminhos, ciclos,
+conectividade e árvores têm aplicações diretas em redes e algoritmos de busca.
+
+\subsubsection*{Indução Matemática}
+Técnica de demonstração para afirmações sobre números naturais, especialmente útil para
+provar a correção de algoritmos recursivos.
+
+\subsection*{Área 3 --- Álgebra e Aritmética}
+
+\subsubsection*{Aritmética Modular}
+$a \equiv b \pmod{m}$ estuda o comportamento dos números em relação a um módulo.
+Fundamental em criptografia e hashing.
+
+\subsubsection*{Álgebra Linear Básica}
+Vetores, matrizes e transformações lineares são essenciais para computação gráfica,
+aprendizado de máquina e física computacional.
+
+\subsubsection*{Teoria dos Números}
+Divisibilidade, números primos, $\gcd(a,b)$, $\text{lcm}(a,b)$ e o Algoritmo de Euclides
+são a base de algoritmos criptográficos como RSA.
+
+\subsection*{Área 4 --- Probabilidade e Estatística}
+
+\subsubsection*{Probabilidade Básica}
+$P(A) \in [0,1]$. Probabilidade condicional $P(A|B) = \frac{P(A \cap B)}{P(B)}$ e
+independência são fundamentais para algoritmos aleatorizados.
+
+\subsubsection*{Estatística Descritiva}
+Médias, medianas, desvios padrão $\sigma$, percentis e visualizações são indispensáveis
+para qualquer projeto de análise de dados.
+
+\subsubsection*{Variáveis Aleatórias e Distribuições}
+Distribuições binomial, Poisson e normal descrevem padrões comuns em dados reais. Esperança
+$E[X]$ e variância $\text{Var}(X)$ são medidas centrais.
+
+\subsection*{Área 5 --- Algoritmos e Complexidade}
+
+\subsubsection*{Recorrências}
+O Teorema Mestre resolve recorrências da forma $T(n) = aT(n/b) + f(n)$, permitindo analisar
+algoritmos recursivos como Merge Sort
+($T(n) = 2T(n/2) + \mathcal{O}(n) = \mathcal{O}(n \log n)$).
+
+\subsubsection*{Análise de Algoritmos}
+A notação Big-$\mathcal{O}$ permite comparar algoritmos de forma independente de hardware:
+$\mathcal{O}(1) \subset \mathcal{O}(\log n) \subset \mathcal{O}(n) \subset
+\mathcal{O}(n \log n) \subset \mathcal{O}(n^2) \subset \mathcal{O}(2^n)$.
+
+\subsubsection*{Técnicas de Design de Algoritmos}
+Divisão e conquista, programação dinâmica e algoritmos gulosos são paradigmas fundamentais
+para resolver problemas computacionais eficientemente.
+
+\end{document}
