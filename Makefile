@@ -1,10 +1,11 @@
-.PHONY: all pdf clean help distclean view rebuild install-deps check-deps
+.PHONY: all pdf html clean help distclean view rebuild install-deps check-deps
 
 MAIN        = math-club-charter
 LATEX       = latexmk
 LATEX_FLAGS = -pdf -interaction=nonstopmode
 
 BUILD_DIR   = build
+HTML_DIR    = $(BUILD_DIR)/html
 
 LATEX_PACKAGES = \
     inputenc pmboxdraw lmodern fontenc geometry xcolor \
@@ -89,6 +90,22 @@ $(BUILD_DIR)/$(MAIN).pdf: $(MAIN).tex
 
 pdf: check-deps $(BUILD_DIR)/$(MAIN).pdf
 
+html: check-deps
+	@$(MKDIR_CMD)
+	@mkdir -p $(HTML_DIR)
+	@if command -v make4ht >/dev/null 2>&1; then \
+		echo "Compilando HTML com make4ht..."; \
+		make4ht -B $(HTML_DIR) -d $(HTML_DIR) $(MAIN).tex; \
+	elif command -v htlatex >/dev/null 2>&1; then \
+		echo "Compilando HTML com htlatex..."; \
+		cd $(HTML_DIR) && htlatex ../../$(MAIN).tex; \
+	else \
+		echo "ERRO: make4ht/htlatex não encontrados."; \
+		echo "Instale TeX4ht para habilitar compilação HTML."; \
+		exit 1; \
+	fi
+	@echo "  ✓ HTML gerado em $(HTML_DIR)/"
+
 view: pdf
 	@echo "Abrindo $(BUILD_DIR)/$(MAIN).pdf no $(OS_NAME)..."
 	@$(OPEN_CMD) $(BUILD_DIR)/$(MAIN).pdf
@@ -113,6 +130,7 @@ help:
 	@echo "  make install-deps   Tenta instalar pacotes LaTeX necessários"
 	@echo "  make check-deps     Verifica se as dependências estão instaladas"
 	@echo "  make  (ou make pdf) Compila para PDF (padrão; verifica deps)"
+	@echo "  make html           Compila para HTML em build/html"
 	@echo "  make view           Compila e abre o PDF"
 	@echo "  make clean          Remove arquivos auxiliares do build"
 	@echo "  make distclean      Remove tudo, incluindo o PDF gerado"
