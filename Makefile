@@ -106,6 +106,8 @@ html: check-deps
 	fi
 	@echo "  ✓ HTML gerado em $(HTML_DIR)/"
 	cp build/html/index.html .
+	cp build/html/index.css . 2>/dev/null || true
+	cp build/html/*.svg . 2>/dev/null || true
 	make distclean
 
 view: pdf
