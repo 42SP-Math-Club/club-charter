@@ -3,7 +3,6 @@ build/*
 !build/*.pdf
 
 # Arquivos compilados LaTeX
-*.pdf
 *.dvi
 *.ps
 *.eps
