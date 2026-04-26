@@ -15,9 +15,9 @@ LATEX_PACKAGES = \
 LATEX_PACKAGE_FILES = $(addsuffix .sty,$(LATEX_PACKAGES))
 
 ifeq ($(OS),Windows_NT)
-    OPEN_CMD   = start ""
-    RM_DIR_CMD = rmdir /s /q
-    MKDIR_CMD  = if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+	OPEN_CMD   = cmd /c start ""
+	RM_DIR_CMD = rm -rf
+	MKDIR_CMD  = mkdir -p $(BUILD_DIR)
     OS_NAME    = Windows
 else
     UNAME_S := $(shell uname -s)
