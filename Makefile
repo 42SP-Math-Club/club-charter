@@ -1,6 +1,6 @@
 .PHONY: all pdf html clean help distclean view rebuild install-deps check-deps
 
-MAIN        = math-club-charter
+MAIN        = index
 LATEX       = latexmk
 LATEX_FLAGS = -pdf -interaction=nonstopmode
 
@@ -105,6 +105,8 @@ html: check-deps
 		exit 1; \
 	fi
 	@echo "  ✓ HTML gerado em $(HTML_DIR)/"
+	cp build/html/index.html .
+	make distclean
 
 view: pdf
 	@echo "Abrindo $(BUILD_DIR)/$(MAIN).pdf no $(OS_NAME)..."
