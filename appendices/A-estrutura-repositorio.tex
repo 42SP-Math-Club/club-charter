@@ -1,0 +1,78 @@
+% APENDICE A
+\section{Estrutura do Repositório de Conhecimento}
+
+\begin{tcolorbox}[enhanced,breakable,colback=black!2,colframe=black!40,boxrule=0.5pt,arc=3pt,left=6pt,right=6pt,top=6pt,bottom=6pt]
+\begin{Verbatim}[fontsize=\small,baselinestretch=1.1]
+knowledge-base/
+├── README.md
+├── guidelines/
+│   ├── template-solution
+│   └── rules-of-the-base
+├── solutions/
+│   ├── logic/
+│   ├── discrete-math/
+│   ├── algebra/
+│   ├── probability/
+│   └── algorithm/
+├── problems/
+│   ├── logic/
+│   ├── discrete-math/
+│   ├── algebra/
+│   ├── probability/
+│   └── algorithm/
+├── techniques/
+├── explanations/
+├── core-knowledge/
+└── resources/
+    ├── cheat-sheets/
+    └── study-materials/
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{description}
+  \item[\texttt{knowledge-base/}]
+    Raiz do repositório. Ponto de entrada para todo o conteúdo estruturado de aprendizado.
+
+  \item[\texttt{README.md}]
+    Visão geral do projeto, instruções de uso e guia de contribuição.
+
+  \item[\texttt{guidelines/}]
+    Padrões e regras que definem como o conteúdo deve ser escrito e organizado no
+    repositório.
+    \begin{itemize}
+      \item \texttt{template-solution} --- Modelo padrão para formatar cada entrada de
+        solução.
+      \item \texttt{rules-of-the-base} --- Convenções de nomenclatura, critérios de
+        qualidade e padrões editoriais.
+    \end{itemize}
+
+  \item[\texttt{solutions/}]
+    Soluções detalhadas passo a passo para os problemas, organizadas por área matemática
+    (\texttt{logic/}, \texttt{discrete-math/}, \texttt{algebra/}, \texttt{probability/},
+    \texttt{algorithm/}).
+
+  \item[\texttt{problems/}]
+    Problemas para prática, ainda sem solução ou propostos como desafio. Espelha exatamente
+    a estrutura de subpastas de \texttt{solutions/}.
+
+  \item[\texttt{techniques/}]
+    Estratégias reutilizáveis de resolução de problemas e métodos matemáticos (ex.:
+    indução, substituição, prova por contradição).
+
+  \item[\texttt{explanations/}]
+    Textos conceituais que explicam o \emph{porquê} de teoremas, demonstrações e ideias,
+    indo além do procedimento mecânico.
+
+  \item[\texttt{core-knowledge/}]
+    Definições fundamentais, axiomas e teoremas que servem de base para o restante
+    do repositório.
+
+  \item[\texttt{resources/}]
+    Materiais de apoio e documentos de referência rápida.
+    \begin{itemize}
+      \item \texttt{cheat-sheets/} --- Folhas de fórmulas e resumos de regras para
+        consulta rápida.
+      \item \texttt{study-materials/} --- Leituras complementares, links externos e textos
+        de referência curados.
+    \end{itemize}
+\end{description}

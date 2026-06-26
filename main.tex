@@ -1,0 +1,45 @@
+\documentclass[12pt, a4paper]{article}
+
+\input{includes.tex}
+\input{resourcers.tex}
+
+\begin{document}
+\thispagestyle{empty}
+
+% CAPA
+\begin{center}
+  \vspace*{1.5cm}
+  \logoClube
+  \vspace*{1cm}
+  {\fontsize{32}{36}\selectfont\color{azul42}\textbf{Clube de Matemática}}\\[0.3cm]
+  {\fontsize{20}{24}\selectfont\color{cinza}@ 42 São Paulo}\\[1.2cm]
+  {\color{azul42}\rule{0.6\textwidth}{1.5pt}}\\[0.8cm]
+  {\large\color{cinza}Regimento do Grupo de Estudos}\\[0.4cm]
+  {\normalsize\color{cinza}Versão 1.0.0 --- 2026}\\[1.5cm]
+  \begin{minipage}{0.75\textwidth}
+    \centering\itshape\color{cinza}\small
+    Este regimento apresenta os princípios, valores e diretrizes operacionais do
+    Clube de Matemática da 42 São Paulo. O clube tem como propósito criar um
+    ambiente de aprendizado colaborativo onde cadetes possam desenvolver
+    fundamentos matemáticos sólidos, fortalecer o raciocínio lógico e, acima
+    de tudo, sentir que pertencem a uma comunidade.
+  \end{minipage}
+\end{center}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\input{sections/01-valores.tex}
+\input{sections/02-objetivos.tex}
+\input{sections/03-metodo.tex}
+\input{sections/04-compromisso.tex}
+\input{sections/05-areas.tex}
+\input{sections/06-recursos.tex}
+
+\appendix
+\input{appendices/A-estrutura-repositorio.tex}
+\input{appendices/B-template-solucao.tex}
+\input{appendices/C-areas-subtopicos.tex}
+
+\end{document}

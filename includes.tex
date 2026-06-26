@@ -1,0 +1,69 @@
+\usepackage[utf8]{inputenc}
+\usepackage{pmboxdraw}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[activate=false]{microtype}
+\usepackage{parskip}
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable,listings}
+\usepackage{fancyvrb}
+
+\geometry{top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headheight=15pt}
+
+\definecolor{azul42}{HTML}{1F3A8A}
+\definecolor{azulclaro}{HTML}{E8EEF9}
+\definecolor{cinza}{HTML}{555555}
+\definecolor{cinzaclaro}{HTML}{F5F5F5}
+
+\hypersetup{colorlinks=true,linkcolor=azul42,urlcolor=azul42,
+  pdftitle={Regimento - Clube de Matematica 42 Sao Paulo}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{azul42}\small\textit{Clube de Matemática @ 42 São Paulo}}
+\fancyhead[R]{\color{cinza}\small\textit{Regimento v1.0.0}}
+\fancyfoot[C]{\color{cinza}\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{azul42}\hrule width\headwidth height\headrulewidth}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}
+  {\color{azul42}\Large\bfseries}{\thesection.}{0.6em}{}
+  [\vspace{2pt}{\color{azul42}\titlerule[1.5pt]}\vspace{4pt}]
+\titleformat{\subsection}{\color{azul42}\large\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\color{cinza}\normalsize\bfseries}{}{0em}{}
+\titlespacing{\section}{0pt}{18pt}{8pt}
+\titlespacing{\subsection}{0pt}{12pt}{6pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{4pt}
+
+\titlecontents{section}[1.5em]
+  {\vspace{4pt}\color{azul42}\bfseries}{\contentslabel{1.5em}}{}
+  {\titlerule*[6pt]{.}\contentspage}
+\titlecontents{subsection}[3.5em]
+  {\vspace{2pt}\small}{\contentslabel{2em}}{}
+  {\titlerule*[6pt]{.}\contentspage}
+
+\setlist[itemize]{leftmargin=1.5em,itemsep=3pt,parsep=0pt,topsep=4pt,
+  label={\color{azul42}\textbullet}}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=3pt,parsep=0pt,topsep=4pt,
+  label={\color{azul42}\arabic*.}}
+
+\newtcolorbox{infobox}[1][]{enhanced,breakable,
+  colback=azulclaro,colframe=azul42,boxrule=0.8pt,arc=4pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,#1}
+
+\newtcolorbox{codebox}{
+enhanced,breakable,
+  colback=cinzaclaro,colframe=cinza!40,boxrule=0.5pt,arc=3pt,
+  fontupper=\ttfamily\small,left=8pt,right=8pt,top=4pt,bottom=4pt}

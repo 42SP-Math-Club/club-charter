@@ -1,0 +1,93 @@
+\clearpage
+
+% APENDICE C
+\section{Áreas de Aprendizado e Subtópicos}
+
+\subsection*{Área 1 --- Lógica e Raciocínio Matemático}
+
+\subsubsection*{Proposições e Conectivos Lógicos}
+Proposições são afirmações que podem ser verdadeiras ou falsas. Os conectivos lógicos
+(negação $\neg$, conjunção $\wedge$, disjunção $\vee$, implicação $\Rightarrow$ e
+bicondicional $\Leftrightarrow$) permitem combinar proposições para formar argumentos
+complexos.
+
+\subsubsection*{Tabelas-Verdade e Equivalências}
+Tabelas-verdade analisam o comportamento de expressões lógicas em todos os casos possíveis.
+As Leis de De Morgan ($\neg(A \wedge B) \equiv \neg A \vee \neg B$) e outras equivalências
+permitem simplificar expressões.
+
+\subsubsection*{Quantificadores e Predicados}
+Quantificadores universais ($\forall$, ``para todo'') e existenciais ($\exists$, ``existe'')
+permitem expressar afirmações sobre conjuntos de objetos. A lógica de predicados forma a
+base da linguagem matemática formal.
+
+\subsubsection*{Técnicas de Demonstração}
+Técnicas como demonstração direta, por contra positiva, por contradição e por indução são
+ferramentas fundamentais do raciocínio matemático.
+
+\subsection*{Área 2 --- Matemática Discreta}
+
+\subsubsection*{Teoria Ingênua dos Conjuntos}
+Operações como união ($A \cup B$), interseção ($A \cap B$), diferença e produto cartesiano
+($A \times B$) aparecem constantemente em estruturas de dados e teoria de tipos.
+
+\subsubsection*{Combinatória}
+Permutações $P(n,k)$, combinações $\binom{n}{k}$ e o princípio da inclusão-exclusão
+aparecem em análise de complexidade de algoritmos e contagem de estruturas.
+
+\subsubsection*{Relações e Funções}
+Funções são relações com propriedades específicas essenciais para compreender mapeamentos
+em programação: injetividade (saídas distintas para entradas distintas), sobrejetividade
+(todo elemento do contradomínio é atingido) e bijetividade (ambas as propriedades).
+
+\subsubsection*{Teoria dos Grafos}
+Grafos $G = (V, E)$ modelam relações entre objetos. Conceitos como caminhos, ciclos,
+conectividade e árvores têm aplicações diretas em redes e algoritmos de busca.
+
+\subsubsection*{Indução Matemática}
+Técnica de demonstração para afirmações sobre números naturais, especialmente útil para
+provar a correção de algoritmos recursivos.
+
+\subsection*{Área 3 --- Álgebra e Aritmética}
+
+\subsubsection*{Aritmética Modular}
+$a \equiv b \pmod{m}$ estuda o comportamento dos números em relação a um módulo.
+Fundamental em criptografia e hashing.
+
+\subsubsection*{Álgebra Linear Básica}
+Vetores, matrizes e transformações lineares são essenciais para computação gráfica,
+aprendizado de máquina e física computacional.
+
+\subsubsection*{Teoria dos Números}
+Divisibilidade, números primos, $\gcd(a,b)$, $\text{lcm}(a,b)$ e o Algoritmo de Euclides
+são a base de algoritmos criptográficos como RSA.
+
+\subsection*{Área 4 --- Probabilidade e Estatística}
+
+\subsubsection*{Probabilidade Básica}
+$P(A) \in [0,1]$. Probabilidade condicional $P(A|B) = \frac{P(A \cap B)}{P(B)}$ e
+independência são fundamentais para algoritmos aleatorizados.
+
+\subsubsection*{Estatística Descritiva}
+Médias, medianas, desvios padrão $\sigma$, percentis e visualizações são indispensáveis
+para qualquer projeto de análise de dados.
+
+\subsubsection*{Variáveis Aleatórias e Distribuições}
+Distribuições binomial, Poisson e normal descrevem padrões comuns em dados reais. Esperança
+$E[X]$ e variância $\text{Var}(X)$ são medidas centrais.
+
+\subsection*{Área 5 --- Algoritmos e Complexidade}
+
+\subsubsection*{Recorrências}
+O Teorema Mestre resolve recorrências da forma $T(n) = aT(n/b) + f(n)$, permitindo analisar
+algoritmos recursivos como Merge Sort
+($T(n) = 2T(n/2) + \mathcal{O}(n) = \mathcal{O}(n \log n)$).
+
+\subsubsection*{Análise de Algoritmos}
+A notação Big-$\mathcal{O}$ permite comparar algoritmos de forma independente de hardware:
+$\mathcal{O}(1) \subset \mathcal{O}(\log n) \subset \mathcal{O}(n) \subset
+\mathcal{O}(n \log n) \subset \mathcal{O}(n^2) \subset \mathcal{O}(2^n)$.
+
+\subsubsection*{Técnicas de Design de Algoritmos}
+Divisão e conquista, programação dinâmica e algoritmos gulosos são paradigmas fundamentais
+para resolver problemas computacionais eficientemente.

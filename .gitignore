@@ -35,6 +35,11 @@ build/
 *.sty
 *.cls
 
+# Build artifacts
+.build/
+.tikz_build/
+svg-inkscape/
+
 # IDEs e Editores
 .vscode/
 .idea/
