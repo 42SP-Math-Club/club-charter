@@ -16,66 +16,70 @@ O documento apresenta:
 ## 📄 Documentação
 
 A documentação completa está disponível em:
-- **Arquivo LaTeX:** `math-club-charter.tex`
-- **PDF compilado:** `build/math-club-charter.pdf`
-- **Formato:** LaTeX / PDF
+- **Arquivo LaTeX:** `main.tex` (modular, com `sections/` e `appendices/`)
+- **PDF compilado:** `docs/index.pdf`
+- **HTML:** `docs/index.html` (com dark mode e MathJax)
+- **Formato:** LaTeX → PDF (pdflatex) / HTML5 (Pandoc)
 
 ## 🛠️ Como Usar
 
-### Compilar o Documento PDF
-
-Você pode compilar o documento de duas formas:
-
-**Opção 1: Usando Make (recomendado)**
+### Build completo (recomendado)
 
 ```bash
-# Compilar
-make pdf
-
-# Compilar e abrir o PDF
-make view
-
-# Limpar arquivos temporários
-make clean
-
-# Ver todos os targets disponíveis
-make help
+make docker-build   # Constrói a imagem (só na primeira vez)
+make docker-make    # Gera PDF + HTML em docs/
 ```
 
-**Opção 2: Linha de comando**
+### Compilar apenas PDF
 
 ```bash
-latexmk -pdf math-club-charter.tex
+make pdf            # Gera docs/index.pdf
+```
+
+### Compilar apenas HTML
+
+```bash
+make html           # Gera docs/index.html
+```
+
+### Abrir o PDF
+
+```bash
+make view           # Abre docs/index.pdf no visualizador padrão
+```
+
+### Limpeza
+
+```bash
+make docker-clean   # Remove docs/ inteiro
+make clean          # Remove artefatos temporários (.build, .tikz_build)
 ```
 
 ### Requisitos
 
-- Uma distribuição LaTeX (TeX Live, MiKTeX, MacTeX, etc.)
-- `latexmk` (geralmente vem com distribuições LaTeX)
-- `make` (ou `mingw-make` no Windows)
-- Pacotes LaTeX: `inputenc`, `pmboxdraw`, `lmodern`, `fontenc`, `geometry`, `xcolor`, `titlesec`, `titletoc`, `fancyhdr`, `enumitem`, `hyperref`, `mdframed`, `array`, `booktabs`, `microtype`, `parskip`, `amsmath`, `amssymb`, `tcolorbox`, `fancyvrb`
+- **Docker** (qualquer versão recente)
 
-Para instalar e validar dependências com o Makefile:
-
-```bash
-make install-deps
-make check-deps
-```
+> Todo o toolchain (TeXLive, Pandoc, Python, dvisvgm) roda dentro do container.
+> **Nenhuma dependência LaTeX no host é necessária.**
 
 ## 📝 Estrutura do Projeto
 
 ```
 club-charter/
-├── README.md                         # Este arquivo
-├── .gitignore                        # Arquivos ignorados pelo Git  
-├── Makefile                          # Automatização de compilação
-├── LICENSE                           # Licença do projeto
-├── math-club-charter.tex             # Documento principal em LaTeX
-└── build/
-    └── math-club-charter.pdf         # PDF compilado
+├── main.tex                          # Documento principal (agrega includes, sections, appendices)
+├── includes.tex                      # Preâmbulo LaTeX (pacotes, cores, fancyhdr, tcolorbox)
+├── resourcers.tex                    # Logos e recursos gráficos (\logoClube com \includesvg)
+├── sections/                         # Seções do estatuto (01 a 06)
+├── appendices/                       # Apêndices (A a C)
+├── resources/                        # SVGs das logos (42SPcm, 42SPcm_back)
+├── tools/                            # Scripts de build (preprocess-tex.py, html-extra.lua)
+├── Dockerfile                        # Imagem com TeXLive + Pandoc 3.1.11
+├── Makefile                          # Targets: docker-build, docker-make, pdf, html, style, clean
+├── docs/                             # Output: PDF + HTML + CSS + resources copiados
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
-
-**Nota:** A pasta `build/` contém apenas o PDF final. Arquivos temporários de compilação são ignorados pelo Git.
 
 ## 🤝 Contribuindo
 
